@@ -12,3 +12,19 @@ function operate(operator, a , b){
     if (operator === "*") return multiply(a, b)
     if (operator === "/") return divide(a, b)
 }
+
+let displayValue = "";
+
+const digits = document.querySelectorAll('.digit');
+
+digits.forEach((digit) => {
+
+  digit.addEventListener('click', () => {
+    
+    if (document.getElementById('display').value === 0) document.getElementById('display').value = "";
+      
+    displayValue += digit.textContent;
+    document.getElementById('display').value = displayValue;
+    console.log(displayValue)
+  });
+});
