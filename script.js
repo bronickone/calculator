@@ -11,53 +11,45 @@ function operate(operator, a , b){
     if (operator === "*") return multiply(a, b)
     if (operator === "/") return divide(a, b)
 }
-let equalFlag = true;
+
+let operationFlag = true;
 let intermediateValue = "";
 let firstValue = "";
 let secondValue = ""
 let currentOperator = "";
 
-const digits = document.querySelectorAll('.digit');
+const digits = document.querySelectorAll('.digit')
 let display = document.querySelector('.display')
 
 digits.forEach((digit) => {
-  digit.addEventListener('click', () => { 
+  digit.addEventListener('click', () => {  
+    if ( intermediateValue === "") {display.value = ""} 
     
-    if ( intermediateValue === "") 
-    display.value = "" 
     intermediateValue += digit.textContent
     display.value = intermediateValue
     
-    if (currentOperator){
-      
-      secondValue = display.value
-    }
-    else {
-    
+    if (currentOperator) {secondValue = display.value}
 
-      firstValue = display.value
-    }
+    else {firstValue = display.value}
     
-    
-    
-    
-
-    equalFlag = false;
+    operationFlag = false;
   });
 });
 
 const operators = document.querySelectorAll('.operator');
 
 operators.forEach((operator) => {
-
     operator.addEventListener('click', () => {
-    if (currentOperator){
-      
-      display.value = operate(currentOperator, firstValue, secondValue)
-      firstValue = display.value
-    }
-    currentOperator = operator.textContent
-    intermediateValue = ""; 
+      if (operationFlag === false){
+        if (currentOperator){ 
+          display.value = operate(currentOperator, firstValue, secondValue)
+          firstValue = display.value
+        }
+        currentOperator = operator.textContent
+        intermediateValue = ""; 
+        operationFlag = true;
+      }
+      else {currentOperator = operator.textContent} 
     });
   });
 
@@ -66,13 +58,13 @@ const equal = document.querySelector('#equals')
 
 
 equal.addEventListener('click', () => {
-  if (equalFlag === false) {
+  if (operationFlag === false) {
     display.value = operate(currentOperator, firstValue, secondValue)
     firstValue = display.value;
     secondValue = "";
     intermediateValue = "";
     currentOperator = "";
-    equalFlag = true;
+    operationFlag = true;
   }
 });
 
@@ -84,5 +76,5 @@ clear.addEventListener('click', () => {
     firstValue = ""
     secondValue = ""
     currentOperator = ""
-    equalFlag = false
+    operationFlag = false
 })
