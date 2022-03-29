@@ -11,50 +11,78 @@ function operate(operator, a , b){
     if (operator === "*") return multiply(a, b)
     if (operator === "/") return divide(a, b)
 }
-
-let displayValue = "";
+let equalFlag = true;
+let intermediateValue = "";
+let firstValue = "";
+let secondValue = ""
+let currentOperator = "";
 
 const digits = document.querySelectorAll('.digit');
+let display = document.querySelector('.display')
 
 digits.forEach((digit) => {
-  digit.addEventListener('click', () => {  
-    if (/*document.getElementById('display').value*/ displayValue === "") 
-    document.getElementById('display').value = "" 
+  digit.addEventListener('click', () => { 
     
-    displayValue += digit.textContent
-    document.getElementById('display').value = displayValue
-    console.log(displayValue)
+    if ( intermediateValue === "") 
+    display.value = "" 
+    intermediateValue += digit.textContent
+    display.value = intermediateValue
+    
+    if (currentOperator){
+      
+      secondValue = display.value
+    }
+    else {
+    
+
+      firstValue = display.value
+    }
+    
+    
+    
+    
+
+    equalFlag = false;
   });
 });
-
-let firstValue;
-let secondValue;
-let currentOperator;
 
 const operators = document.querySelectorAll('.operator');
 
 operators.forEach((operator) => {
 
     operator.addEventListener('click', () => {
-    currentOperator = operator.textContent;
-    firstValue = displayValue;
-    displayValue = "";  
+    if (currentOperator){
+      
+      display.value = operate(currentOperator, firstValue, secondValue)
+      firstValue = display.value
+    }
+    currentOperator = operator.textContent
+    intermediateValue = ""; 
     });
   });
 
 const equal = document.querySelector('#equals')
 
+
+
 equal.addEventListener('click', () => {
-    secondValue = displayValue;
-    console.log(currentOperator)
-    displayValue = operate(currentOperator, firstValue, secondValue)
-    document.getElementById('display').value = displayValue
-    displayValue = "";
+  if (equalFlag === false) {
+    display.value = operate(currentOperator, firstValue, secondValue)
+    firstValue = display.value;
+    secondValue = "";
+    intermediateValue = "";
+    currentOperator = "";
+    equalFlag = true;
+  }
 });
 
 const clear = document.querySelector('#clear')
 
 clear.addEventListener('click', () => {
-    document.getElementById('display').value = 0;
-    displayValue = "";
+    display.value = 0;
+    intermediateValue = "";
+    firstValue = ""
+    secondValue = ""
+    currentOperator = ""
+    equalFlag = false
 })
