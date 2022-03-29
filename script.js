@@ -20,6 +20,7 @@ let currentOperator = "";
 
 const digits = document.querySelectorAll('.digit')
 let display = document.querySelector('.display')
+let dot = document.querySelector('.dot')
 
 digits.forEach((digit) => {
   digit.addEventListener('click', () => {  
@@ -29,18 +30,26 @@ digits.forEach((digit) => {
     display.value = intermediateValue
     
     if (currentOperator) {secondValue = display.value}
-
     else {firstValue = display.value}
     
     operationFlag = false;
   });
 });
 
+dot.addEventListener('click', () => {
+  if (!display.value.includes('.')){
+    intermediateValue += '.'
+    display.value = intermediateValue
+    
+    if (currentOperator) {secondValue = display.value}
+    else {firstValue = display.value}
+  }
+})
 const operators = document.querySelectorAll('.operator');
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
-      if (operationFlag === false){
+      if (!operationFlag){
         if (currentOperator){ 
           display.value = operate(currentOperator, firstValue, secondValue)
           firstValue = display.value
@@ -55,10 +64,8 @@ operators.forEach((operator) => {
 
 const equal = document.querySelector('#equals')
 
-
-
 equal.addEventListener('click', () => {
-  if (operationFlag === false) {
+  if (!operationFlag) {
     display.value = operate(currentOperator, firstValue, secondValue)
     firstValue = display.value;
     secondValue = "";
