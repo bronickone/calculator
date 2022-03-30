@@ -1,7 +1,7 @@
-let add = (a, b) => a + b;
-let subtract = (a, b) => a - b;
-let multiply = (a, b) => a * b;
-let divide = (a, b) => a / b;
+let add = (a, b) => a + b
+let subtract = (a, b) => a - b
+let multiply = (a, b) => a * b
+let divide = (a, b) => a / b
 
 function operate(operator, a , b){
     a = Number(a);
@@ -9,28 +9,47 @@ function operate(operator, a , b){
     if (operator === "+") return add(a, b)
     if (operator === "-") return subtract(a, b)
     if (operator === "*") return multiply(a, b)
-    if (operator === "/") return divide(a, b)
+    if (operator === "/") {
+      if (b === 0)  {
+        clearValues()
+        return "Error: Division by zero"   
+      }
+      else return divide(a, b)
+    }
 }
 
-let operationFlag = true;
-let intermediateValue = "";
-let firstValue = "";
+let operationFlag = true
+let intermediateValue = ""
+let firstValue = ""
 let secondValue = ""
-let currentOperator = "";
+let currentOperator = ""
 
 const digits = document.querySelectorAll('.digit')
 let display = document.querySelector('.display')
 let dot = document.querySelector('.dot')
+let plusMinus = document.querySelector('.plusMinus')
+
+function populateDisplay(){
+  if (intermediateValue.length > 10) {intermediateValue = intermediateValue.slice (0, -1)}
+  display.value = intermediateValue
+  if (currentOperator) {secondValue = display.value}
+  else {firstValue = display.value}
+  
+}
+
+function evalDisplay(){
+  display.value = operate(currentOperator, firstValue, secondValue)
+  if (Math.floor(display.value) > 9999999999) {display.value = 'Error'}
+  if ( display.value.length > 10) {display.value = display.value.slice(0, 10)}
+}
 
 digits.forEach((digit) => {
   digit.addEventListener('click', () => {  
+    if ((digit.textContent === "0") && (display.value.charAt(0) === "0")) {return}
     if ( intermediateValue === "") {display.value = ""} 
     
     intermediateValue += digit.textContent
-    display.value = intermediateValue
-    
-    if (currentOperator) {secondValue = display.value}
-    else {firstValue = display.value}
+    populateDisplay()
     
     operationFlag = false;
   });
@@ -39,19 +58,30 @@ digits.forEach((digit) => {
 dot.addEventListener('click', () => {
   if (!display.value.includes('.')){
     intermediateValue += '.'
-    display.value = intermediateValue
-    
-    if (currentOperator) {secondValue = display.value}
-    else {firstValue = display.value}
+    populateDisplay()
   }
 })
+
+plusMinus.addEventListener('click', () => {
+  if (display.value.includes('-')){
+    intermediateValue = intermediateValue.slice(1);
+    populateDisplay()
+    return
+  }
+  
+  if (!display.value.includes('-')){
+    intermediateValue = '-' + intermediateValue
+    populateDisplay()
+  }  
+})
+
 const operators = document.querySelectorAll('.operator');
 
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
       if (!operationFlag){
         if (currentOperator){ 
-          display.value = operate(currentOperator, firstValue, secondValue)
+          evalDisplay()
           firstValue = display.value
         }
         currentOperator = operator.textContent
@@ -64,13 +94,18 @@ operators.forEach((operator) => {
 
 const equal = document.querySelector('#equals')
 
-equal.addEventListener('click', () => {
-  if (!operationFlag) {
-    display.value = operate(currentOperator, firstValue, secondValue)
-    firstValue = display.value;
-    secondValue = "";
+function clearValues(){
     intermediateValue = "";
-    currentOperator = "";
+    firstValue = ""
+    secondValue = ""
+    currentOperator = ""
+}
+equal.addEventListener('click', () => {
+  if (firstValue === "" || secondValue === "") {return}
+  if (!operationFlag) {
+    evalDisplay()
+    clearValues()
+    firstValue = display.value;
     operationFlag = true;
   }
 });
@@ -79,9 +114,6 @@ const clear = document.querySelector('#clear')
 
 clear.addEventListener('click', () => {
     display.value = 0;
-    intermediateValue = "";
-    firstValue = ""
-    secondValue = ""
-    currentOperator = ""
+    clearValues()
     operationFlag = false
 })
