@@ -12,7 +12,7 @@ function operate(operator, a , b){
     if (operator === "/") {
       if (b === 0)  {
         clearValues()
-        return "Error: Division by zero"   
+        return "divByZero"   
       }
       else return divide(a, b)
     }
@@ -25,16 +25,29 @@ let secondValue = ""
 let currentOperator = ""
 
 const digits = document.querySelectorAll('.digit')
-let display = document.querySelector('.display')
-let dot = document.querySelector('.dot')
-let plusMinus = document.querySelector('.plusMinus')
+const display = document.querySelector('.display')
+const dot = document.querySelector('.dot')
+const plusMinus = document.querySelector('.plusMinus')
+let history =  document.querySelector('.history')
+
+function clearValues(){
+  intermediateValue = "";
+  firstValue = ""
+  secondValue = ""
+  currentOperator = ""
+  history.textContent = " "
+}
+
+function displayHistory(){
+  history.textContent = `${firstValue}${currentOperator}${secondValue}`
+}
 
 function populateDisplay(){
   if (intermediateValue.length > 10) {intermediateValue = intermediateValue.slice (0, -1)}
   display.value = intermediateValue
   if (currentOperator) {secondValue = display.value}
   else {firstValue = display.value}
-  
+  displayHistory()
 }
 
 function evalDisplay(){
@@ -82,6 +95,7 @@ operators.forEach((operator) => {
       if (!operationFlag){
         if (currentOperator){ 
           evalDisplay()
+          secondValue = "";
           firstValue = display.value
         }
         currentOperator = operator.textContent
@@ -89,17 +103,13 @@ operators.forEach((operator) => {
         operationFlag = true;
       }
       else {currentOperator = operator.textContent} 
+      displayHistory()
     });
   });
 
 const equal = document.querySelector('#equals')
 
-function clearValues(){
-    intermediateValue = "";
-    firstValue = ""
-    secondValue = ""
-    currentOperator = ""
-}
+
 equal.addEventListener('click', () => {
   if (firstValue === "" || secondValue === "") {return}
   if (!operationFlag) {
@@ -108,6 +118,7 @@ equal.addEventListener('click', () => {
     firstValue = display.value;
     operationFlag = true;
   }
+  displayHistory()
 });
 
 const clear = document.querySelector('#clear')
