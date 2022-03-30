@@ -35,7 +35,7 @@ function clearValues(){
   firstValue = ""
   secondValue = ""
   currentOperator = ""
-  history.textContent = ""
+  history.textContent = "0"
 }
 
 function displayHistory(){
@@ -124,7 +124,7 @@ equal.addEventListener('click', () => {
 const clear = document.querySelector('#clear')
 
 clear.addEventListener('click', () => {
-    display.textContent = "";
+    display.textContent = "0";
     clearValues()
     operationFlag = false
 })

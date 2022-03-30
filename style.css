@@ -27,7 +27,7 @@ body{
     background-image: linear-gradient(to right,rgba(28,28,48,0), rgba(0, 0, 0, 0.3), rgba(28,28,48,0));
     font-family:'Rock Salt', sans-serif;  
     font-size:0.8rem;
-    position:fixed;
+    /*position:fixed;*/
     bottom: 0;
     left: 0;
     right: 0;
