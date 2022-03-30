@@ -17,7 +17,7 @@ body{
 }
 .header{
     font-family: Bangers,sans-serif;
-    color: rgb(212, 209, 230);
+    color: rgb(255, 255, 255);
 }
 .header, .footer{   
     margin:0;
@@ -35,7 +35,7 @@ body{
 }
 
 .container{
-    background-color:rgb(141, 109, 168);
+    background-color:rgb(168, 116, 109);
     border: 2px;
     border-color: rgb(48, 0, 87);
     border-style: groove;
@@ -84,7 +84,8 @@ body{
     background-color: rgb(105, 140, 185);
     width:25%;
     height:100%;
-    color:rgb(245, 245, 245);
+    color:rgb(223, 114, 114);
+    
 }
 
 #bottom{
@@ -105,12 +106,15 @@ body{
 
 .dot, .plusMinus{
     background-color: rgb(255, 124, 124);
-    color:rgb(214, 214, 214);
+    color:rgb(243, 125, 56);
+    
+    
 }
 
 .digit{
     background-color: rgb(233, 150, 150);
-    color:#b8b8b8;
+    color:rgb(83, 126, 182);
+    
 }
 
 .clearEquals{
@@ -121,7 +125,8 @@ body{
 .ce{
     background-color: rgb(252, 144, 82);
     height:171px;
-    color:rgb(179, 179, 179);  
+    color:rgb(53, 114, 69);
+    
     
 }
 .digit, .dot, .plusMinus, .operator, .ce{
