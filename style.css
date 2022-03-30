@@ -1,0 +1,89 @@
+body{
+   /* background-image: linear-gradient(to bottom, rgb(0, 38, 255),yellow);
+    background-repeat:space;
+    background-size: cover;
+    background-attachment: fixed;*/
+    margin:0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header, .footer{   
+    margin:0;
+    padding:3px 0px;   
+}
+.footer{
+    background-image: linear-gradient(to right,rgba(28,28,48,0), rgba(0, 0, 0, 0.3), rgba(28,28,48,0));
+    font-family: 'Rock Salt', sans-serif;  
+    font-size:0.7rem;
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: rgb(0, 0, 0);
+}
+
+.container{  
+    border: 2px solid black;
+    height: 550px;
+    width: 400px;
+}
+
+.screen{
+    border: 2px solid black;
+    text-align: right;
+    margin:5px;
+    width: 385px;
+    height: 100px;
+}
+.history{
+    padding: 5px;
+    font-size:20px;
+}
+.display{
+    padding: 5px;
+    font-size: 60px;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+}
+#operators{
+  height: 95px; 
+  display: flex;
+  justify-content: center; 
+}
+.operator{
+    width:25%;
+    height:100%;
+    font-size: 40px;
+}
+#bottom{
+    display: flex;
+    justify-content: space-between;
+}
+#digits{
+    width:75%;
+    height:95px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.digit, .dot, .plusMinus{
+    width: 33.3%;
+    height:90%;
+    font-size: 40px;
+}
+.clearEquals{
+    display: flex;
+    flex-direction: column;
+    width:25%;
+   
+}
+.ce{
+    height:171px;
+    font-size: 40px;
+}

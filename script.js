@@ -26,8 +26,8 @@ let currentOperator = ""
 
 const digits = document.querySelectorAll('.digit')
 const display = document.querySelector('.display')
-const dot = document.querySelector('.dot')
-const plusMinus = document.querySelector('.plusMinus')
+const dot = document.querySelector('#dot')
+const plusMinus = document.querySelector('#plusMinus')
 let history =  document.querySelector('.history')
 
 function clearValues(){
@@ -35,31 +35,31 @@ function clearValues(){
   firstValue = ""
   secondValue = ""
   currentOperator = ""
-  history.textContent = " "
+  history.textContent = "0"
 }
 
 function displayHistory(){
-  history.textContent = `${firstValue}${currentOperator}${secondValue}`
+  history.textContent = `${firstValue}  ${currentOperator}  ${secondValue}`
 }
 
 function populateDisplay(){
   if (intermediateValue.length > 10) {intermediateValue = intermediateValue.slice (0, -1)}
-  display.value = intermediateValue
-  if (currentOperator) {secondValue = display.value}
-  else {firstValue = display.value}
+  display.textContent = intermediateValue
+  if (currentOperator) {secondValue = display.textContent}
+  else {firstValue = display.textContent}
   displayHistory()
 }
 
 function evalDisplay(){
-  display.value = operate(currentOperator, firstValue, secondValue)
-  if (Math.floor(display.value) > 9999999999) {display.value = 'Error'}
-  if ( display.value.length > 10) {display.value = display.value.slice(0, 10)}
+  display.textContent = operate(currentOperator, firstValue, secondValue)
+  if (Math.floor(display.textContent) > 9999999999) {display.textContent = 'Error'}
+  if ( display.textContent.length > 10) {display.textContent = display.textContent.slice(0, 10)}
 }
 
 digits.forEach((digit) => {
   digit.addEventListener('click', () => {  
-    if ((digit.textContent === "0") && (display.value.charAt(0) === "0")) {return}
-    if ( intermediateValue === "") {display.value = ""} 
+    if ((digit.textContent === "0") && (display.textContent.charAt(0) === "0")) {return}
+    if ( intermediateValue === "") {display.textContent = ""} 
     
     intermediateValue += digit.textContent
     populateDisplay()
@@ -69,20 +69,20 @@ digits.forEach((digit) => {
 });
 
 dot.addEventListener('click', () => {
-  if (!display.value.includes('.')){
+  if (!display.textContent.includes('.')){
     intermediateValue += '.'
     populateDisplay()
   }
 })
 
 plusMinus.addEventListener('click', () => {
-  if (display.value.includes('-')){
+  if (display.textContent.includes('-')){
     intermediateValue = intermediateValue.slice(1);
     populateDisplay()
     return
   }
   
-  if (!display.value.includes('-')){
+  if (!display.textContent.includes('-')){
     intermediateValue = '-' + intermediateValue
     populateDisplay()
   }  
@@ -96,7 +96,7 @@ operators.forEach((operator) => {
         if (currentOperator){ 
           evalDisplay()
           secondValue = "";
-          firstValue = display.value
+          firstValue = display.textContent
         }
         currentOperator = operator.textContent
         intermediateValue = ""; 
@@ -115,7 +115,7 @@ equal.addEventListener('click', () => {
   if (!operationFlag) {
     evalDisplay()
     clearValues()
-    firstValue = display.value;
+    firstValue = display.textContent;
     operationFlag = true;
   }
   displayHistory()
@@ -124,7 +124,7 @@ equal.addEventListener('click', () => {
 const clear = document.querySelector('#clear')
 
 clear.addEventListener('click', () => {
-    display.value = 0;
+    display.textContent = "0";
     clearValues()
     operationFlag = false
 })
