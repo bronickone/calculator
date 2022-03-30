@@ -35,7 +35,7 @@ function clearValues(){
   firstValue = ""
   secondValue = ""
   currentOperator = ""
-  history.textContent = "0"
+  history.textContent = ""
 }
 
 function displayHistory(){
@@ -58,7 +58,7 @@ function evalDisplay(){
 
 digits.forEach((digit) => {
   digit.addEventListener('click', () => {  
-    if ((digit.textContent === "0") && (display.textContent.charAt(0) === "0")) {return}
+    if ((digit.textContent === "0") && (display.textContent === "0")) {return}
     if ( intermediateValue === "") {display.textContent = ""} 
     
     intermediateValue += digit.textContent
@@ -124,7 +124,7 @@ equal.addEventListener('click', () => {
 const clear = document.querySelector('#clear')
 
 clear.addEventListener('click', () => {
-    display.textContent = "0";
+    display.textContent = "";
     clearValues()
     operationFlag = false
 })

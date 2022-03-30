@@ -80,13 +80,7 @@ body{
   justify-content: center; 
 }
 
-.operator{
-    background-color: rgb(105, 140, 185);
-    width:25%;
-    height:100%;
-    color:rgb(223, 114, 114);
-    
-}
+
 
 #bottom{
     display: flex;
@@ -105,15 +99,15 @@ body{
 }
 
 .dot, .plusMinus{
-    background-color: rgb(255, 124, 124);
-    color:rgb(243, 125, 56);
+    background-color: rgb(255, 140, 140);
+    color:rgb(68, 32, 11);
     
     
 }
 
 .digit{
-    background-color: rgb(233, 150, 150);
-    color:rgb(83, 126, 182);
+    background-color: rgb(231, 165, 165);
+    color:rgb(54, 80, 114);
     
 }
 
@@ -123,9 +117,9 @@ body{
     width:25%;   
 }
 .ce{
-    background-color: rgb(252, 144, 82);
+    background-color: rgb(255, 171, 122);
     height:171px;
-    color:rgb(53, 114, 69);
+    color:rgb(20, 43, 26);
     
     
 }
@@ -134,5 +128,14 @@ body{
     font-family: Dosis, Arial, Helvetica, sans-serif;
     font-weight: 700;
     border-radius: 7px;
+    color:rgb(12, 10, 39);
+}
+
+.operator{
+    background-color: rgb(119, 158, 209);
+    width:25%;
+    height:100%;
+    
+    font-size: 50px;
     
 }
