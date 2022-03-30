@@ -52,7 +52,7 @@ function populateDisplay(){
 
 function evalDisplay(){
   display.textContent = operate(currentOperator, firstValue, secondValue)
-  if (Math.floor(display.textContent) > 9999999999) {display.textContent = 'Error'}
+  if (Math.floor(display.textContent) > 9999999999) {display.textContent = 'Overflow'}
   if ( display.textContent.length > 10) {display.textContent = display.textContent.slice(0, 10)}
 }
 

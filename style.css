@@ -1,8 +1,13 @@
+@font-face {
+    font-family:digital-7mono;
+    src: url("./Fonts/digital-7\ \(mono\).ttf");
+}
+
 body{
-   /* background-image: linear-gradient(to bottom, rgb(0, 38, 255),yellow);
+    background-image: linear-gradient(to bottom, rgb(0, 38, 255),yellow);
     background-repeat:space;
     background-size: cover;
-    background-attachment: fixed;*/
+    background-attachment: fixed;
     margin:0;
     text-align: center;
     display: flex;
@@ -10,7 +15,10 @@ body{
     justify-content: center;
     align-items: center;
 }
-
+.header{
+    font-family: Bangers,sans-serif;
+    color: rgb(10, 2, 56);
+}
 .header, .footer{   
     margin:0;
     padding:3px 0px;   
@@ -26,13 +34,17 @@ body{
     color: rgb(0, 0, 0);
 }
 
-.container{  
+.container{
+    background-color: blanchedalmond;
     border: 2px solid black;
+    border-radius: 7px;
     height: 550px;
     width: 400px;
 }
 
 .screen{
+    background-color: black;
+    border-radius: 10px;
     border: 2px solid black;
     text-align: right;
     margin:5px;
@@ -40,12 +52,15 @@ body{
     height: 100px;
 }
 .history{
+    color:rgb(255, 136, 0);
     padding: 5px;
     font-size:20px;
 }
 .display{
+    color:green;
+    font-family: digital-7mono, sans-serif;
     padding: 5px;
-    font-size: 60px;
+    font-size: 75px;
 }
 .buttons{
     display: flex;
@@ -58,9 +73,11 @@ body{
   justify-content: center; 
 }
 .operator{
+    background-color: rgb(105, 140, 185);
     width:25%;
     height:100%;
     font-size: 40px;
+    border-radius: 7px;
 }
 #bottom{
     display: flex;
@@ -76,6 +93,13 @@ body{
     width: 33.3%;
     height:90%;
     font-size: 40px;
+    border-radius: 7px;
+}
+.dot, .plusMinus{
+    background-color: rgb(255, 124, 124);
+}
+.digit{
+    background-color: rgb(233, 150, 150);
 }
 .clearEquals{
     display: flex;
@@ -84,6 +108,8 @@ body{
    
 }
 .ce{
+    background-color: rgb(252, 144, 82);
     height:171px;
     font-size: 40px;
+    border-radius: 7px;
 }
