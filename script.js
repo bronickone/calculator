@@ -80,7 +80,7 @@ dot.addEventListener('click', () => {       //dot button
 })
 
 plusMinus.addEventListener('click', () => {  //plus minus button
-  if (display.textContent === "0"){return}  
+  if (display.textContent === "0" || (operationFlag)){return}  
 
   if (display.textContent.includes('-')){
     intermediateValue = intermediateValue.slice(1);
