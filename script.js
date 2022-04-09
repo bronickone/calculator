@@ -1,4 +1,4 @@
-let add = (a, b) => a + b
+let add = (a, b) => a + b        //basic functions
 let subtract = (a, b) => a - b
 let multiply = (a, b) => a * b
 let divide = (a, b) => a / b
@@ -18,9 +18,9 @@ function operate(operator, a , b){
     }
 }
 
-let operationFlag = true
+let operationFlag = true  //flag for multiple equal button click preventing and mutiple operator click preventing 
 let intermediateValue = ""
-let firstValue = ""
+let firstValue = "0"
 let secondValue = ""
 let currentOperator = ""
 
@@ -30,19 +30,19 @@ const dot = document.querySelector('#dot')
 const plusMinus = document.querySelector('#plusMinus')
 let history =  document.querySelector('.history')
 
-function clearValues(){
+function clearValues(){       //clear function
   intermediateValue = "";
-  firstValue = ""
+  firstValue = "0"
   secondValue = ""
   currentOperator = ""
   history.textContent = "0"
 }
 
-function displayHistory(){
+function displayHistory(){    //function for little screen populating
   history.textContent = `${firstValue}  ${currentOperator}  ${secondValue}`
 }
 
-function populateDisplay(){
+function populateDisplay(){     //function for main screen populating
   if (intermediateValue.length > 10) {intermediateValue = intermediateValue.slice (0, -1)}
   display.textContent = intermediateValue
   if (currentOperator) {secondValue = display.textContent}
@@ -50,13 +50,13 @@ function populateDisplay(){
   displayHistory()
 }
 
-function evalDisplay(){
+function evalDisplay(){          //evaluation function( run after equal button click or operator button click(if not first operator in a row))
   display.textContent = operate(currentOperator, firstValue, secondValue)
   if (Math.floor(display.textContent) > 9999999999) {display.textContent = 'Overflow'}
   if ( display.textContent.length > 10) {display.textContent = display.textContent.slice(0, 10)}
 }
 
-digits.forEach((digit) => {
+digits.forEach((digit) => {     //digit buttons function
   digit.addEventListener('click', () => {  
     if ((digit.textContent === "0") && (display.textContent === "0")) {return}
     if ( intermediateValue === "") {display.textContent = ""} 
@@ -68,14 +68,20 @@ digits.forEach((digit) => {
   });
 });
 
-dot.addEventListener('click', () => {
+dot.addEventListener('click', () => {       //dot button
+  if (display.textContent === "0"){
+    intermediateValue = 0;
+  }
+
   if (!display.textContent.includes('.')){
     intermediateValue += '.'
     populateDisplay()
   }
 })
 
-plusMinus.addEventListener('click', () => {
+plusMinus.addEventListener('click', () => {  //plus minus button
+  if (display.textContent === "0"){return}  
+
   if (display.textContent.includes('-')){
     intermediateValue = intermediateValue.slice(1);
     populateDisplay()
@@ -90,7 +96,7 @@ plusMinus.addEventListener('click', () => {
 
 const operators = document.querySelectorAll('.operator');
 
-operators.forEach((operator) => {
+operators.forEach((operator) => {            //operator buttons function
     operator.addEventListener('click', () => {
       if (!operationFlag){
         if (currentOperator){ 
@@ -110,7 +116,7 @@ operators.forEach((operator) => {
 const equal = document.querySelector('#equals')
 
 
-equal.addEventListener('click', () => {
+equal.addEventListener('click', () => {            //equal button function
   if (firstValue === "" || secondValue === "") {return}
   if (!operationFlag) {
     evalDisplay()
@@ -123,7 +129,7 @@ equal.addEventListener('click', () => {
 
 const clear = document.querySelector('#clear')
 
-clear.addEventListener('click', () => {
+clear.addEventListener('click', () => {  //clear button function
     display.textContent = "0";
     clearValues()
     operationFlag = false
