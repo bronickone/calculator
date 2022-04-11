@@ -157,8 +157,9 @@ document.addEventListener('keydown', (event) => { // keyboard input function
 		'+': 'add',
 		'-': 'subtract'
   }
-
-	if(!isNaN(event.key) && event.key !== ' '){
+  console.log(event.key);
+  console.log(event.key.search(/[0-9]/))
+	if(event.key.search(/[0-9]/) === 0){
 		document.getElementById(`dig${event.key}`).click();
 	}
 	
