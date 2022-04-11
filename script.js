@@ -43,6 +43,7 @@ function displayHistory(){    //function for little screen populating
 }
 
 function playAudio(audio){
+  document.getElementById(audio).currentTime = 0;
   document.getElementById(audio).play();
 }
 
@@ -119,7 +120,7 @@ operators.forEach((operator) => {            //operator buttons function
       }
       else {currentOperator = operator.textContent} 
       displayHistory()
-      playAudio('audio1');
+      playAudio('audio3');
     });
 
 });
@@ -145,7 +146,7 @@ clear.addEventListener('click', () => {  //clear button function
     display.textContent = "0";
     clearValues()
     operationFlag = false
-    playAudio('audio1');
+    playAudio('audio4');
 })
 
 document.addEventListener('keydown', (event) => { // keyboard input function
