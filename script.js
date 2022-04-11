@@ -52,7 +52,8 @@ function populateDisplay(){     //function for main screen populating
 
 function evalDisplay(){          //evaluation function( run after equal button click or operator button click(if not first operator in a row))
   display.textContent = operate(currentOperator, firstValue, secondValue)
-  if (Math.floor(display.textContent) > 9999999999) {display.textContent = 'Overflow'}
+  if ((Math.floor(display.textContent) > 9999999999) || (Math.floor(display.textContent) < -999999999)) 
+    {display.textContent = 'Overflow'}
   if ( display.textContent.length > 10) {display.textContent = display.textContent.slice(0, 10)}
 }
 
@@ -67,6 +68,7 @@ digits.forEach((digit) => {     //digit buttons function
     operationFlag = false;
   });
 });
+
 
 dot.addEventListener('click', () => {       //dot button
   if (display.textContent === "0"){
@@ -111,7 +113,8 @@ operators.forEach((operator) => {            //operator buttons function
       else {currentOperator = operator.textContent} 
       displayHistory()
     });
-  });
+
+});
 
 const equal = document.querySelector('#equals')
 
@@ -134,3 +137,29 @@ clear.addEventListener('click', () => {  //clear button function
     clearValues()
     operationFlag = false
 })
+
+document.addEventListener('keydown', (event) => { // keyboard input function
+	
+	let getOperators = {
+		'/': 'divide',
+		'*': 'multiply',
+		'+': 'add',
+		'-': 'subtract'
+  }
+
+	if(!isNaN(event.key) && event.key !== ' '){
+		document.getElementById(`dig${event.key}`).click();
+	}
+	if (['/', 'x', '+', '-', '*', '%'].includes(event.key)) {
+		document.getElementById(getOperators[event.key]).click();
+	}
+	if (event.key === 'Backspace' || event.key ==='c' || event.key === 'C') {
+		document.getElementById('clear').click();	
+	}
+	if (event.key === '=' || event.key === 'Enter') {
+		document.getElementById('equals').click();	
+	}
+	if (event.key === '.') {
+		document.getElementById('dot').click();	
+	}
+});
