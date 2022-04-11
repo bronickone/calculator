@@ -4,7 +4,7 @@
 }
 
 body{
-    background-image: linear-gradient(to bottom, rgb(0, 38, 255),yellow);
+    background-image: linear-gradient(to bottom, rgb(109, 109, 109),rgb(255, 255, 255));
     background-repeat:space;
     background-size: cover;
     background-attachment: fixed;
@@ -24,6 +24,10 @@ body{
     padding:3px 0px;   
 }
 .footer{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap:10px;
     font-family:'Rock Salt', sans-serif;  
     font-size:0.8rem;
     /*position:fixed;*/
@@ -32,6 +36,14 @@ body{
     right: 0;
     color: rgb(0, 0, 0);
 }
+
+.uaFlag{
+    height: 30px;
+    width: 30px;
+    display:inline-block;
+    background: linear-gradient(to bottom, rgb(0, 26, 255) 50%, rgb(251, 255, 0) 50%);
+    border-radius: 100%;
+  }
 
 .container{
     background-color:rgb(168, 116, 109);
