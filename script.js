@@ -42,12 +42,17 @@ function displayHistory(){    //function for little screen populating
   history.textContent = `${firstValue}  ${currentOperator}  ${secondValue}`
 }
 
+function playAudio(audio){
+  document.getElementById(audio).play();
+}
+
 function populateDisplay(){     //function for main screen populating
   if (intermediateValue.length > 10) {intermediateValue = intermediateValue.slice (0, -1)}
   display.textContent = intermediateValue
   if (currentOperator) {secondValue = display.textContent}
   else {firstValue = display.textContent}
   displayHistory()
+  playAudio('audio1')
 }
 
 function evalDisplay(){          //evaluation function( run after equal button click or operator button click(if not first operator in a row))
@@ -55,6 +60,7 @@ function evalDisplay(){          //evaluation function( run after equal button c
   if ((Math.floor(display.textContent) > 9999999999) || (Math.floor(display.textContent) < -999999999)) 
     {display.textContent = 'Overflow'}
   if ( display.textContent.length > 10) {display.textContent = display.textContent.slice(0, 10)}
+  
 }
 
 digits.forEach((digit) => {     //digit buttons function
@@ -66,6 +72,7 @@ digits.forEach((digit) => {     //digit buttons function
     populateDisplay()
     
     operationFlag = false;
+    
   });
 });
 
@@ -112,6 +119,7 @@ operators.forEach((operator) => {            //operator buttons function
       }
       else {currentOperator = operator.textContent} 
       displayHistory()
+      playAudio('audio1');
     });
 
 });
@@ -128,6 +136,7 @@ equal.addEventListener('click', () => {            //equal button function
     operationFlag = true;
   }
   displayHistory()
+  playAudio('audio2');
 });
 
 const clear = document.querySelector('#clear')
@@ -136,6 +145,7 @@ clear.addEventListener('click', () => {  //clear button function
     display.textContent = "0";
     clearValues()
     operationFlag = false
+    playAudio('audio1');
 })
 
 document.addEventListener('keydown', (event) => { // keyboard input function
@@ -150,16 +160,20 @@ document.addEventListener('keydown', (event) => { // keyboard input function
 	if(!isNaN(event.key) && event.key !== ' '){
 		document.getElementById(`dig${event.key}`).click();
 	}
-	if (['/', 'x', '+', '-', '*', '%'].includes(event.key)) {
+	
+  if (['/', '+', '-', '*'].includes(event.key)) {
 		document.getElementById(getOperators[event.key]).click();
 	}
-	if (event.key === 'Backspace' || event.key ==='c' || event.key === 'C') {
+	
+  if (event.key === 'Backspace' || event.key ==='c' || event.key === 'C') {
 		document.getElementById('clear').click();	
 	}
-	if (event.key === '=' || event.key === 'Enter') {
+	
+  if (event.key === '=' || event.key === 'Enter') {
 		document.getElementById('equals').click();	
 	}
-	if (event.key === '.') {
+	
+  if (event.key === '.') {
 		document.getElementById('dot').click();	
 	}
 });
