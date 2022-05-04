@@ -44,7 +44,9 @@ function displayHistory(){    //function for little screen populating
 
 function playAudio(audio){
   document.getElementById(audio).currentTime = 0;
+  document.getElementById(audio).volume = 0.05;
   document.getElementById(audio).play();
+  
 }
 
 function populateDisplay(){     //function for main screen populating
@@ -54,6 +56,8 @@ function populateDisplay(){     //function for main screen populating
   else {firstValue = display.textContent}
   displayHistory()
   playAudio('audio1')
+  
+
 }
 
 function evalDisplay(){          //evaluation function( run after equal button click or operator button click(if not first operator in a row))

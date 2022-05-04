@@ -63,6 +63,18 @@ body{
     margin:5px;
     width: 385px;
     height: 100px;
+    display: relative;
+}
+
+.backScreen{
+    color:rgba(29, 71, 29, 0.342);
+    position: relative;
+    font-family: digital-7mono, sans-serif;
+    top:-46.5px;
+    left:-5px;
+    z-index: 0;
+    font-size: 75px;
+    
 }
 .history{
     font-family: Dosis, Arial, Helvetica, sans-serif;
@@ -73,8 +85,8 @@ body{
     font-weight:700;
 }
 .display{
-
-    color:rgb(0, 192, 0);
+    z-index: 1;
+    color:rgb(10, 223, 10);
     font-family: digital-7mono, sans-serif;
     padding-bottom: 5px;
     padding-right: 5px;
